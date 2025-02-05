@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: keycloak-auth-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/keycloakUserTest?createDatabaseIfNotExist=true
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 6700
+  servlet:
+    context-path: /auth
