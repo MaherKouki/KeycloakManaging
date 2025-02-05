@@ -59,6 +59,7 @@ public class UserServiceImpl implements UserService {
 
     }
 
+
     private UsersResource getUsersResource() {
 
         return keycloak.realm(realm).users();
