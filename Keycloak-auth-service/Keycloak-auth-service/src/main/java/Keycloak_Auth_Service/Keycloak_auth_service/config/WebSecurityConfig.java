@@ -40,7 +40,8 @@ public class WebSecurityConfig {
                     "/public/**"
             )
                     .requestMatchers(
-                            "/v3/api-docs/**" , "/configuration/**"
+                            "/v3/api-docs/**" , "/configuration/**" , "/swagger-ui/**",
+                            "/swagger-resources/**" ,"/swagger-ui.html", "/webjars/**" , "/api-docs/**"
                     );
 
         };
