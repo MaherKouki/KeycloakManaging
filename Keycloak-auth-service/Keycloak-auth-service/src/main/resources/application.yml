@@ -14,3 +14,11 @@ server:
   port: 6700
   servlet:
     context-path: /auth
+
+app:
+  keycloak:
+    admin:
+      clientId: admin-cli
+      clientSecret: mBFKCtZwfD5fRATQD2WbVDej1TSsYZtX
+    realm: spring
+    serverUrl: http://localhost:9082
