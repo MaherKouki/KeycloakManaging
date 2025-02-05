@@ -50,9 +50,12 @@ public class UserServiceImpl implements UserService {
 
         log.info("Status Code:{}", response.getStatus());
 
-        if(Objects.equals(201,response.getStatus())){
-            log.info("User created successfully");
+        if(!Objects.equals(201,response.getStatus())){
+            throw new RuntimeException("Status Code:"+response.getStatus());
         }
+
+        log.info("New User created successfully");
+
 
     }
 
