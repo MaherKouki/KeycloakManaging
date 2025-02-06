@@ -2,6 +2,7 @@ package Keycloak_Auth_Service.Keycloak_auth_service.api;
 
 
 import Keycloak_Auth_Service.Keycloak_auth_service.Model.NewUserRecord;
+import Keycloak_Auth_Service.Keycloak_auth_service.repository.NewUserRepository;
 import Keycloak_Auth_Service.Keycloak_auth_service.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,11 +19,13 @@ public class UsersApi {
 
 
     private final UserService userService;
+    private final NewUserRepository repo;
 
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody NewUserRecord newUserRecord) {
 
         userService.createUser(newUserRecord);
+        repo.save(newUserRecord);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
