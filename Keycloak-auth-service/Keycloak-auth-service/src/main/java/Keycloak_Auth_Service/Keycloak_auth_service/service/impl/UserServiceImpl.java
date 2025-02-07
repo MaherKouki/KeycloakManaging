@@ -134,23 +134,33 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Failed to retrieve userId from Keycloak.");
         }
 
+
         log.info("New User created successfully with Keycloak ID: {}", newUserRecord.getUserId());
 
+        List<UserRepresentation> userRepresentations = usersResource.searchByUsername(newUserRecord.getUsername(),true);
+        UserRepresentation userRepresentation1 = userRepresentations.get(0);
+        sendVerificationEmail(userRepresentation1.getId());
         //
 
 
         //log.info("New User created successfully");
     }
 
-    /*@Override
+    @Override
     public void sendVerificationEmail(String userId) {
 
         UsersResource usersResource = getUsersResource();
         usersResource.get(userId).sendVerifyEmail();
-    }*/
-
+    }
 
     @Override
+    public void deleteUser(String userId) {
+        UsersResource usersResource = getUsersResource();
+        usersResource.delete(userId);
+    }
+
+
+    /*@Override
     public void sendVerificationEmail(Long id) {
 
         UsersResource usersResource = getUsersResource();
@@ -158,7 +168,10 @@ public class UserServiceImpl implements UserService {
 
 
         usersResource.get(userr.getUserId()).sendVerifyEmail();
-    }
+    }*/
+
+
+
 
 
     private UsersResource getUsersResource() {
