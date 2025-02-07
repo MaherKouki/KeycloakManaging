@@ -142,14 +142,14 @@ public class UserServiceImpl implements UserService {
         //log.info("New User created successfully");
     }
 
-    @Override
+    /*@Override
     public void sendVerificationEmail(String userId) {
 
         UsersResource usersResource = getUsersResource();
         usersResource.get(userId).sendVerifyEmail();
-    }
+    }*/
 
-    /*
+
     @Override
     public void sendVerificationEmail(Long id) {
 
@@ -158,7 +158,7 @@ public class UserServiceImpl implements UserService {
 
 
         usersResource.get(userr.getUserId()).sendVerifyEmail();
-    }*/
+    }
 
 
     private UsersResource getUsersResource() {

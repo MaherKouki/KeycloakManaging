@@ -5,6 +5,8 @@ import Keycloak_Auth_Service.Keycloak_auth_service.Model.NewUserRecord;
 public interface UserService {
 
     void createUser(NewUserRecord newUserRecord);
-    void sendVerificationEmail(String userId);
+    //void sendVerificationEmail(String userId);
+    void sendVerificationEmail(Long userId);
+
 
 }

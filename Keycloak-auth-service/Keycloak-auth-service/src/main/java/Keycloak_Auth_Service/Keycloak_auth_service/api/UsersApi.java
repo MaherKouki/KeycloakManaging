@@ -27,8 +27,16 @@ public class UsersApi {
     }
 
 
-    @PutMapping("/{id}/send-verification-email")
+    //http://localhost:6700/auth/users/8f260298-7d79-4782-a708-eea15bcd6a85/send-verification-email
+    /*@PutMapping("/{id}/send-verification-email")
     public ResponseEntity<?> sendVerificationEmail(@PathVariable String id) {
+
+        userService.sendVerificationEmail(id);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }*/
+
+    @PutMapping("/{id}/send-verification-email")
+    public ResponseEntity<?> sendVerificationEmail(@PathVariable Long id) {
 
         userService.sendVerificationEmail(id);
         return ResponseEntity.status(HttpStatus.OK).build();
