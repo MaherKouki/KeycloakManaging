@@ -10,10 +10,12 @@ public record NewUserRecord(
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-
+import org.keycloak.admin.client.resource.UsersResource;
+import org.keycloak.admin.client.resource.UsersResource;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -41,6 +43,10 @@ public class NewUserRecord {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @JsonIgnore
+    private String userId;
+
 
 }
 

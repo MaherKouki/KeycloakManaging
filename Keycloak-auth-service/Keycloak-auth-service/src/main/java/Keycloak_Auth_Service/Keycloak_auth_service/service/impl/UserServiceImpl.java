@@ -120,8 +120,25 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Status Code:"+response.getStatus());
         }
 
+        //
 
-        log.info("New User created successfully");
+        List<UserRepresentation> users = usersResource.search(newUserRecord.getUsername());
+
+        if (!users.isEmpty()) {
+            String keycloakUserId = users.get(0).getId();
+            newUserRecord.setUserId(keycloakUserId); //  Set Keycloak userId in entity
+        } else {
+            throw new RuntimeException("Failed to retrieve userId from Keycloak.");
+        }
+
+        log.info("New User created successfully with Keycloak ID: {}", newUserRecord.getUserId());
+
+        //
+
+
+
+
+        //log.info("New User created successfully");
     }
 
     @Override

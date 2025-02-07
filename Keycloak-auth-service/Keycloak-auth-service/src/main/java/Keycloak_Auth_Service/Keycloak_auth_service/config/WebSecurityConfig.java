@@ -33,7 +33,7 @@ public class WebSecurityConfig {
             web.ignoring().requestMatchers(
                     HttpMethod.PUT,
                     "/public/**",
-                    "/users/**"
+                    "/users//{id}/send-verification-email"
             );
 
             web.ignoring().requestMatchers(
