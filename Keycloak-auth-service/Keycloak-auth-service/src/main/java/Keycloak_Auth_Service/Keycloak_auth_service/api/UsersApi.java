@@ -26,6 +26,7 @@ public class UsersApi {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+
     @PutMapping("/{id}/send-verification-email")
     public ResponseEntity<?> sendVerificationEmail(@PathVariable String id) {
 
