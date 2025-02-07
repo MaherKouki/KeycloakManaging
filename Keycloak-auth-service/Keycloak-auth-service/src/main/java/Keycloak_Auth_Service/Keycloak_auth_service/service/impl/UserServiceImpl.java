@@ -68,6 +68,7 @@ public class UserServiceImpl implements UserService {
 
 
 import Keycloak_Auth_Service.Keycloak_auth_service.Model.NewUserRecord;
+import Keycloak_Auth_Service.Keycloak_auth_service.repository.NewUserRepository;
 import Keycloak_Auth_Service.Keycloak_auth_service.service.UserService;
 import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
@@ -83,6 +84,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -92,6 +94,7 @@ public class UserServiceImpl implements UserService {
     @Value("${app.keycloak.realm}")
     private String realm;
     private final Keycloak keycloak;
+    private final NewUserRepository newUserRepository;
 
     @Override
     public void createUser(NewUserRecord newUserRecord) {
@@ -144,8 +147,18 @@ public class UserServiceImpl implements UserService {
 
         UsersResource usersResource = getUsersResource();
         usersResource.get(userId).sendVerifyEmail();
-
     }
+
+    /*
+    @Override
+    public void sendVerificationEmail(Long id) {
+
+        UsersResource usersResource = getUsersResource();
+        NewUserRecord userr = newUserRepository.findById(id).orElse(null);
+
+
+        usersResource.get(userr.getUserId()).sendVerifyEmail();
+    }*/
 
 
     private UsersResource getUsersResource() {
