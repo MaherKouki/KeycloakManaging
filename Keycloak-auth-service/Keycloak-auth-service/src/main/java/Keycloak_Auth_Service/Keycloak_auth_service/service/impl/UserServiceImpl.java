@@ -136,8 +136,6 @@ public class UserServiceImpl implements UserService {
         //
 
 
-
-
         //log.info("New User created successfully");
     }
 
