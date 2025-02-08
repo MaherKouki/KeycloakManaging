@@ -174,6 +174,15 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    public UserResource getUser(String userId){
+        UsersResource usersResource = getUsersResource();
+
+        return usersResource.get(userId);
+    }
+
+
+
+
     /*@Override
     public void sendVerificationEmail(Long id) {
 
@@ -188,7 +197,7 @@ public class UserServiceImpl implements UserService {
 
 
 
-    private UsersResource getUsersResource() {
+    public UsersResource getUsersResource() {
 
         return keycloak.realm(realm).users();
     }
