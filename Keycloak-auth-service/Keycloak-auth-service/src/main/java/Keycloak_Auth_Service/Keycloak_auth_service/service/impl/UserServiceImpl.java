@@ -159,6 +159,20 @@ public class UserServiceImpl implements UserService {
         usersResource.delete(userId);
     }
 
+    @Override
+    public void forgotPassword(String userName) {
+
+
+        UsersResource usersResource = getUsersResource();
+
+        List<UserRepresentation> userRepresentations = usersResource.searchByUsername(userName,true);
+        UserRepresentation userRepresentation1 = userRepresentations.get(0);
+
+        UserResource userResource = usersResource.get(userRepresentation1.getId());
+
+        userResource.executeActionsEmail(List.of("UPDATE_PASSWORD"));
+    }
+
 
     /*@Override
     public void sendVerificationEmail(Long id) {

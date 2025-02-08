@@ -8,6 +8,7 @@ public interface UserService {
     void sendVerificationEmail(String userId);
     //void sendVerificationEmail(Long userId);
     void deleteUser(String UserId);
+    void forgotPassword(String userName);
 
 
 }

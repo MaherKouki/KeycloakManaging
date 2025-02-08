@@ -42,6 +42,18 @@ public class UsersApi {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+
+
+
+    //http://localhost:6700/auth/users/forgot-password?username=koukimaher386@gmail.com
+    @PutMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(@RequestParam String username) {
+        userService.forgotPassword(username);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+
+
     /*@PutMapping("/{id}/send-verification-email")
     public ResponseEntity<?> sendVerificationEmail(@PathVariable Long id) {
 
