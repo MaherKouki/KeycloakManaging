@@ -31,11 +31,8 @@ public class RoleServiceImpl implements RoleService {
     public void assignRole(String userId, String roleName) {
 
         UserResource user = userService.getUser(userId);
-
         RolesResource rolesResource = getRolesResource();
         RoleRepresentation representation = rolesResource.get(roleName).toRepresentation();
-
-
         user.roles().realmLevel().add(Collections.singletonList(representation));
 
     }
