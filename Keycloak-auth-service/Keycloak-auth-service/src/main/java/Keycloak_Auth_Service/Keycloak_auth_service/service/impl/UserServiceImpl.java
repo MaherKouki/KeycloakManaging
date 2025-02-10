@@ -175,6 +175,7 @@ public class UserServiceImpl implements UserService {
     }
 
 
+
     public UserResource getUser(String userId){
         UsersResource usersResource = getUsersResource();
 
