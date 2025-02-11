@@ -41,12 +41,21 @@ public class RoleServiceImpl implements RoleService {
 
         //NewUserRecord users = newUserRepository.findNewUserByUserId(userId)
 
-
-
         NewUserRecord users = newUserRepository.findNewUserByUserId(userId)
                 .orElseThrow(() -> new RuntimeException("Failed to retrieve userId from Keycloak."));
         users.setRole(roleName);
         newUserRepository.save(users);
+    }
+
+    @Override
+    public void deleteRoleFromUser(String userId, String roleName) {
+
+        UserResource user = userService.getUser(userId);
+        RolesResource rolesResource = getRolesResource();
+        RoleRepresentation representation = rolesResource.get(roleName).toRepresentation();
+        user.roles().realmLevel().add(Collections.singletonList(representation));
+
+
     }
 
     private RolesResource getRolesResource() {
