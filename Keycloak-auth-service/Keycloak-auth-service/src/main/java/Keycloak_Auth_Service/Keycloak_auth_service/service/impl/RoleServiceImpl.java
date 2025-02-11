@@ -1,5 +1,7 @@
 package Keycloak_Auth_Service.Keycloak_auth_service.service.impl;
 
+import Keycloak_Auth_Service.Keycloak_auth_service.Model.NewUserRecord;
+import Keycloak_Auth_Service.Keycloak_auth_service.repository.NewUserRepository;
 import Keycloak_Auth_Service.Keycloak_auth_service.service.RoleService;
 import Keycloak_Auth_Service.Keycloak_auth_service.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Optional;
 
 
 @Service
@@ -20,6 +23,7 @@ import java.util.Collections;
 public class RoleServiceImpl implements RoleService {
 
     private final UserService userService;
+    private final NewUserRepository newUserRepository;
 
 
 
@@ -27,16 +31,24 @@ public class RoleServiceImpl implements RoleService {
     private String realm;
     private final Keycloak keycloak;
 
+
     @Override
     public void assignRole(String userId, String roleName) {
-
         UserResource user = userService.getUser(userId);
         RolesResource rolesResource = getRolesResource();
         RoleRepresentation representation = rolesResource.get(roleName).toRepresentation();
         user.roles().realmLevel().add(Collections.singletonList(representation));
 
-    }
+        //NewUserRecord users = newUserRepository.findNewUserByUserId(userId)
 
+
+
+        NewUserRecord users = newUserRepository.findNewUserByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("Failed to retrieve userId from Keycloak."));
+        users.setRole(roleName);
+        newUserRepository.save(users);
+
+    }
 
     private RolesResource getRolesResource() {
         return keycloak.realm(realm).roles();
