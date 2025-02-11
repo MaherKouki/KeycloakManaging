@@ -53,4 +53,48 @@ public class RoleServiceImpl implements RoleService {
     private RolesResource getRolesResource() {
         return keycloak.realm(realm).roles();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*@Override
+    public void assignRoles(String userId, List<Role> roles) {
+        UserResource user = userService.getUser(userId);
+        RolesResource rolesResource = getRolesResource();
+
+        // Loop through the roles and assign them to the user
+        for (Role role : roles) {
+            RoleRepresentation representation = rolesResource.get(role.name()).toRepresentation();
+            user.roles().realmLevel().add(Collections.singletonList(representation));
+        }
+
+        // Update the roles in the database if needed (optional)
+        NewUserRecord users = newUserRepository.findNewUserByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("Failed to retrieve userId from Keycloak."));
+
+        // Update the roles field in the user record (optional)
+        users.setRoles(roles.stream().map(Role::name).collect(Collectors.toList()));
+        newUserRepository.save(users);
+    }*/
+
+
+
+
 }
