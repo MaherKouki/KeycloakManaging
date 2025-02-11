@@ -25,4 +25,11 @@ public class RolesApi {
     }
 
 
+    @DeleteMapping("/remove/users/{userId}")
+    public ResponseEntity<?> unAssignRole(@PathVariable String userId , @RequestParam String roleName) {
+        roleService.deleteRoleFromUser(userId, roleName);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+
 }
