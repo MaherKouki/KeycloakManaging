@@ -30,8 +30,8 @@ import java.util.Date;
 public class NewUserRecord {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String userId;
 
     private String username;
     private String password;
@@ -44,8 +44,8 @@ public class NewUserRecord {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @JsonIgnore
-    private String userId;
+    /*@JsonIgnore
+    private String userId;*/
 
     @JsonIgnore
     private String Role;

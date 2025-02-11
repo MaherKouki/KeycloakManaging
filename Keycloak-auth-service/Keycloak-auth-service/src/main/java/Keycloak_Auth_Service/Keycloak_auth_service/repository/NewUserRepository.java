@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface NewUserRepository extends JpaRepository<NewUserRecord,Long> {
+public interface NewUserRepository extends JpaRepository<NewUserRecord,String> {
 
     Optional<NewUserRecord> findNewUserByUserId(String username);
 }

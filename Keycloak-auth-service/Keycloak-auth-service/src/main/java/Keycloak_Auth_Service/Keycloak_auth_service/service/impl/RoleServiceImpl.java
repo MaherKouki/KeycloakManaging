@@ -47,29 +47,11 @@ public class RoleServiceImpl implements RoleService {
                 .orElseThrow(() -> new RuntimeException("Failed to retrieve userId from Keycloak."));
         users.setRole(roleName);
         newUserRepository.save(users);
-
     }
 
     private RolesResource getRolesResource() {
         return keycloak.realm(realm).roles();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
