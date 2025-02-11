@@ -75,13 +75,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.keycloak.admin.client.Keycloak;
+import org.keycloak.admin.client.resource.RolesResource;
 import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.idm.CredentialRepresentation;
+import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -95,6 +98,9 @@ public class UserServiceImpl implements UserService {
     private String realm;
     private final Keycloak keycloak;
     private final NewUserRepository newUserRepository;
+    //private final UserService userService;
+
+
 
     /*@Override
     public void createUser(NewUserRecord newUserRecord) {
@@ -182,7 +188,7 @@ public class UserServiceImpl implements UserService {
 
         if (!users.isEmpty()) {
             String keycloakUserId = users.get(0).getId();
-            newUserRecord.setUserId(keycloakUserId); //  Set Keycloak userId in entity
+            newUserRecord.setUserId(keycloakUserId);
         } else {
             throw new RuntimeException("Failed to retrieve userId from Keycloak.");
         }
@@ -237,6 +243,50 @@ public class UserServiceImpl implements UserService {
 
         return usersResource.get(userId);
     }
+
+
+    /*@Override
+    public void assignRole(String userId, String roleName) {
+        UserResource user = userService.getUser(userId);
+        RolesResource rolesResource = getRolesResource();
+        RoleRepresentation representation = rolesResource.get(roleName).toRepresentation();
+        user.roles().realmLevel().add(Collections.singletonList(representation));
+
+        //NewUserRecord users = newUserRepository.findNewUserByUserId(userId)
+
+
+
+        NewUserRecord users = newUserRepository.findNewUserByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("Failed to retrieve userId from Keycloak."));
+        users.setRole(roleName);
+        newUserRepository.save(users);
+    }*/
+
+    /*private RolesResource getRolesResource() {
+        return keycloak.realm(realm).roles();
+    }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

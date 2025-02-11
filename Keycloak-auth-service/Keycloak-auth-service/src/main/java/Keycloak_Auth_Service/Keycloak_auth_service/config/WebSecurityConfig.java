@@ -38,7 +38,9 @@ public class WebSecurityConfig {
                     "/public/**",
                     "/users/{id}/send-verification-email",
                     "/users/forgot-password"
+                    //,"/roles/assign/users/"
             );
+
 
             web.ignoring().requestMatchers(
                     HttpMethod.OPTIONS,
