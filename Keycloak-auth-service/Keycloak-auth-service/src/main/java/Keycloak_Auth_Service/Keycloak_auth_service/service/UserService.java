@@ -3,6 +3,11 @@ package Keycloak_Auth_Service.Keycloak_auth_service.service;
 import Keycloak_Auth_Service.Keycloak_auth_service.Model.NewUserRecord;
 import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.admin.client.resource.UsersResource;
+import org.keycloak.representations.idm.RoleRepresentation;
+
+//import org.keycloak.representations.account.UserRepresentation;
+
+import java.util.List;
 
 public interface UserService {
 
@@ -14,6 +19,7 @@ public interface UserService {
 
     UserResource getUser(String userId);
 
+   List<RoleRepresentation> getUserRoles(String userId);
 
 
 }

@@ -54,6 +54,15 @@ public class UsersApi {
 
 
 
+    @GetMapping("/roles/{id}")
+    public ResponseEntity<?> getUserRoles(@PathVariable String id) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getUserRoles(id));
+    }
+
+
+
+
+
 
 
 

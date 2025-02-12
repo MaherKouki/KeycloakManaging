@@ -244,6 +244,13 @@ public class UserServiceImpl implements UserService {
         return usersResource.get(userId);
     }
 
+    @Override
+    public List<RoleRepresentation> getUserRoles(String userId) {
+        return getUser(userId).roles().realmLevel().listAll();
+    }
+
+
+
 
     /*@Override
     public void assignRole(String userId, String roleName) {
