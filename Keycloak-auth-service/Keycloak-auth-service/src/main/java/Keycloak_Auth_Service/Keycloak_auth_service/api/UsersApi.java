@@ -36,6 +36,7 @@ public class UsersApi {
     }
 
 
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable String id) {
         userService.deleteUser(id);
