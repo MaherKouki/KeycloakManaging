@@ -45,8 +45,6 @@ public class UsersApi {
 
 
 
-
-
     //http://localhost:6700/auth/users/forgot-password?username=koukimaher386@gmail.com
     @PutMapping("/forgot-password")
     public ResponseEntity<?> forgotPassword(@RequestParam String username) {
