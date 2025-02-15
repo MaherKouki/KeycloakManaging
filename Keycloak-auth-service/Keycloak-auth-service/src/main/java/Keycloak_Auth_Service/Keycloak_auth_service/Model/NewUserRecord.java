@@ -41,13 +41,11 @@ public class NewUserRecord {
     private int age;
     private int num;
 
-
     @CreationTimestamp
     private LocalDateTime createdAt;
 
     /*@JsonIgnore
     private String userId;*/
-
 
     @JsonIgnore
     private String Role;
