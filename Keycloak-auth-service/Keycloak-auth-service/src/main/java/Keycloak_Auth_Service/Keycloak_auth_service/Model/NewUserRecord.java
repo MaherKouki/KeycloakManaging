@@ -41,6 +41,7 @@ public class NewUserRecord {
     private int age;
     private int num;
 
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 
