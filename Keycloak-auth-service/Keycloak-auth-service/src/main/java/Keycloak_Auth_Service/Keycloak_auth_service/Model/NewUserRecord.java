@@ -47,7 +47,6 @@ public class NewUserRecord {
     /*@JsonIgnore
     private String userId;*/
 
-
     @JsonIgnore
     private String Role;
 
