@@ -19,7 +19,6 @@ import org.keycloak.admin.client.resource.UsersResource;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-
 @Entity
 @Getter
 @Setter
