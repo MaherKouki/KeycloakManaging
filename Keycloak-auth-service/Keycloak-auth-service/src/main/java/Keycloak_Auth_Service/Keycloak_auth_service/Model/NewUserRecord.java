@@ -7,8 +7,6 @@ public record NewUserRecord(
         String lastName
 ) {
 }*/
-
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
