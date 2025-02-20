@@ -15,8 +15,6 @@ export function kcFactory(kcService: KeycloakService) {
   return () => kcService.init();
 }
 
-
-
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
