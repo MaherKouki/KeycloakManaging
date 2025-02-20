@@ -16,7 +16,7 @@ export class KeycloakService {
         url: 'http://localhost:9082',
         realm : 'spring',
         clientId : 'admin-cli'
-      });
+      })
     }
     return this._keycloak;
   }
