@@ -22,11 +22,17 @@ export class KeycloakService {
   }
 
 
-  async init(){
-    const authenticated = await this.keycloak.init({
-      onLoad: 'login-required'
-    })
+  async init(): Promise<void> {
+    try {
+      const authenticated = await this.keycloak.init({
+        onLoad: 'login-required'
+      });
+      console.log('Keycloak authentication:', authenticated);
+    } catch (error) {
+      console.error('Keycloak initialization failed', error);
+    }
   }
+
 
   async login(){
     await this.keycloak.login();
