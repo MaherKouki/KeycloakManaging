@@ -25,8 +25,6 @@ public class WebSecurityConfig {
                     "/public/**"
             );
 
-
-
             web.ignoring().requestMatchers(
                     HttpMethod.DELETE,
                     "/public/**",
