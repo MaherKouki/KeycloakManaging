@@ -33,8 +33,6 @@ public class WebSecurityConfig {
                     "/users/{id}"
             );
 
-
-
             web.ignoring().requestMatchers(
                     HttpMethod.PUT,
                     "/public/**",
