@@ -113,7 +113,7 @@ public class WebSecurityConfig {
                             "/**"
                     )
                     .requestMatchers("/v3/api-docs/**", "/configuration/**", "/swagger-ui/**",
-                            "/swagger-resources/**", "/swagger-ui.html", "/webjars/**", "/api-docs/**");
+                            "/swagger-resources/**", "/swagger-ui.html", "/webjars/**", "/api-docs/**","/auth/**");
 
         };
     }
