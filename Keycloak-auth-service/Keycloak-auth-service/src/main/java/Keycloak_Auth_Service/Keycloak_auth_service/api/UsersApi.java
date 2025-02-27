@@ -3,6 +3,7 @@ package Keycloak_Auth_Service.Keycloak_auth_service.api;
 
 import Keycloak_Auth_Service.Keycloak_auth_service.Model.NewUserRecord;
 import Keycloak_Auth_Service.Keycloak_auth_service.repository.NewUserRepository;
+import Keycloak_Auth_Service.Keycloak_auth_service.service.RoleService;
 import Keycloak_Auth_Service.Keycloak_auth_service.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ public class UsersApi {
 
     private final UserService userService;
     private final NewUserRepository repo;
+    private final RoleService roleService;
 
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody NewUserRecord newUserRecord) {
@@ -60,6 +62,12 @@ public class UsersApi {
         return ResponseEntity.status(HttpStatus.OK).body(userService.getUserRoles(id));
     }
 
+
+    @PutMapping("/assign/users/{userId}")
+    public ResponseEntity<?> assignRole(@PathVariable String userId , @RequestParam String roleName) {
+        roleService.assignRole(userId, roleName);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 
 
 

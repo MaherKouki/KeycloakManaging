@@ -105,7 +105,8 @@ public class WebSecurityConfig {
                     HttpMethod.PUT,
                     "/public/**",
                     "/users/{id}/send-verification-email",
-                    "/users/forgot-password"
+                    "/users/forgot-password",
+                    "users/assign/users/{userId}"
 
             );
             web.ignoring().requestMatchers(
