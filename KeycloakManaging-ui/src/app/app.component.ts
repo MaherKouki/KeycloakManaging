@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
       this.router.navigate(['/admin']);
     } else if (roles.includes('COACH')) {
       this.router.navigate(['/coach']);
-    } else if (roles.includes('analyst')) {
+    } else if (roles.includes('ANALYST')) {
       this.router.navigate(['/analyst']);
     } else if (roles.includes('player')) {
       this.router.navigate(['/player']);
