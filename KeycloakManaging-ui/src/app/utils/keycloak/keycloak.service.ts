@@ -15,14 +15,14 @@ export class KeycloakService {
       this._keycloak = new Keycloak({
         url: 'http://localhost:9082',
         realm : 'spring',
-        clientId : 'admin-cli'
+        clientId : 'test-app'
       })
     }
     return this._keycloak;
   }
 
 
-  async init(): Promise<void> {
+  /*async init(): Promise<void> {
     try {
       const authenticated = await this.keycloak.init({
         onLoad: 'login-required'
@@ -31,7 +31,25 @@ export class KeycloakService {
     } catch (error) {
       console.error('Keycloak initialization failed', error);
     }
+  }*/
+
+
+  async init(): Promise<void> {
+    try {
+      const authenticated = await this.keycloak.init({
+        onLoad: 'login-required'
+      });
+      if (authenticated) {
+        await this.keycloak.loadUserProfile();
+        console.log('Token after login:', this.keycloak.tokenParsed);
+        //console.log('Token after login:', this.keycloak.tokenParsed);
+
+      }
+    } catch (error) {
+      console.error('Keycloak initialization failed', error);
+    }
   }
+
 
 
   async login(){
@@ -57,6 +75,21 @@ export class KeycloakService {
   accountManagement(){
     return this.keycloak.accountManagement();
   }
+
+  getRoleFromToken(token: any): boolean {
+    return token?.realm_access?.roles?.includes("COACH") ?? false;
+  }
+
+
+   get roles(): string[] {
+     return this.keycloak?.tokenParsed?.['realm_access']?.['roles'] || [];
+   }
+
+
+   hasRoleOfCoach(role: string): boolean {
+     return this.roles.includes(role.toUpperCase() as string);
+   }
+
 
 
 

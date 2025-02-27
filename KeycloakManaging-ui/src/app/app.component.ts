@@ -8,29 +8,31 @@ import {KeycloakService} from './utils/keycloak/keycloak.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+/*export class AppComponent {
   title = 'KeycloakManaging-ui';
   constructor(private keycloakService: KeycloakService, private router: Router) {}
 
 
 
 
+
+
+}*/
+
+export class AppComponent implements OnInit {
+  title = 'KeycloakManaging-ui';
+  constructor(private keycloakService: KeycloakService, private router: Router) {}
 
   logout() {
     this.keycloakService.logout();
   }
-}
-
-/*export class AppComponent implements OnInit {
-  title = 'KeycloakManaging-ui';
-  constructor(private keycloakService: KeycloakService, private router: Router) {}
 
   ngOnInit() {
     const roles = this.keycloakService.roles;
 
     if (roles.includes('admin')) {
       this.router.navigate(['/admin']);
-    } else if (roles.includes('coach')) {
+    } else if (roles.includes('COACH')) {
       this.router.navigate(['/coach']);
     } else if (roles.includes('analyst')) {
       this.router.navigate(['/analyst']);
@@ -42,4 +44,4 @@ export class AppComponent {
       this.router.navigate(['/unauthorized']);
     }
   }
-}*/
+}

@@ -11,6 +11,7 @@ import {provideHttpClient, withInterceptors} from '@angular/common/http';
 import {keycloakHttpInterceptor} from './utils/http/keycloak-http.interceptor';
 import {KeycloakService} from './utils/keycloak/keycloak.service';
 
+
 export function kcFactory(kcService: KeycloakService) {
   return () => kcService.init();
 }
