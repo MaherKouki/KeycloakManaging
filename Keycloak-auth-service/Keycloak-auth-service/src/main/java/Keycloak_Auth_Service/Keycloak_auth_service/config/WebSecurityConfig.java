@@ -76,10 +76,9 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
+//@EnableMethodSecurity
 @RequiredArgsConstructor
 public class WebSecurityConfig {
-
 
     private final JwtAuthConverter jwtAuthConverter;
 
@@ -113,7 +112,7 @@ public class WebSecurityConfig {
                             HttpMethod.OPTIONS,
                             "/**"
                     )
-                    .requestMatchers("/v3/api-docs/**", "/configuration/**", "/swagger-ui/**",
+                   .requestMatchers("/v3/api-docs/**", "/configuration/**", "/swagger-ui/**",
                             "/swagger-resources/**", "/swagger-ui.html", "/webjars/**", "/api-docs/**","/auth/**");
 
         };
@@ -137,5 +136,4 @@ public class WebSecurityConfig {
                 .build();
     }
 }
-
 

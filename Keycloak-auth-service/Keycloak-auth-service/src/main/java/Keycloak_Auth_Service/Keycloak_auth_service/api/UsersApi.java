@@ -63,11 +63,11 @@ public class UsersApi {
     }
 
 
-    @PutMapping("/assign/users/{userId}")
+    /*@PutMapping("/assign/users/{userId}")
     public ResponseEntity<?> assignRole(@PathVariable String userId , @RequestParam String roleName) {
         roleService.assignRole(userId, roleName);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
+    }*/
 
 
 

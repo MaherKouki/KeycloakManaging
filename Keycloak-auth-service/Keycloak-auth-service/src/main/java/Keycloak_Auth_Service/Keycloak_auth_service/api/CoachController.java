@@ -17,7 +17,7 @@ public class CoachController {
 
 
     @GetMapping("coach-role")
-    @PreAuthorize("hasRole('COACH')")
+    //@PreAuthorize("hasRole('COACH')")
     public ResponseEntity<String> test() {
         System.out.println("beeetttttoniii daviiid");
         return ResponseEntity.status(HttpStatus.OK).body("Coaaaaaaach");
