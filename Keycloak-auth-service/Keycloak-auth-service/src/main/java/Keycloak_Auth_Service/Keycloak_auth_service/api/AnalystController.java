@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AnalystController {
 
     @GetMapping("analyst-role")
-    //@PreAuthorize("hasRole('ANALYST')")
+    @PreAuthorize("hasRole('ANALYST')")
     public ResponseEntity<String> test() {
         System.out.println("ANALYST soltaaani");
         return ResponseEntity.status(HttpStatus.OK).body("Anaaaalyst");

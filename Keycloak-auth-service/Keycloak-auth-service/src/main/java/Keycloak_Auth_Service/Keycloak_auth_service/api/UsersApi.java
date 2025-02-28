@@ -1,13 +1,16 @@
 package Keycloak_Auth_Service.Keycloak_auth_service.api;
 
 
+import Keycloak_Auth_Service.Keycloak_auth_service.Model.Coach;
 import Keycloak_Auth_Service.Keycloak_auth_service.Model.NewUserRecord;
+import Keycloak_Auth_Service.Keycloak_auth_service.repository.CoachRepo;
 import Keycloak_Auth_Service.Keycloak_auth_service.repository.NewUserRepository;
 import Keycloak_Auth_Service.Keycloak_auth_service.service.RoleService;
 import Keycloak_Auth_Service.Keycloak_auth_service.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,8 +22,29 @@ public class UsersApi {
     private final UserService userService;
     private final NewUserRepository repo;
     private final RoleService roleService;
+    private final CoachRepo coachRepo;
 
-    @PostMapping
+    @GetMapping("admin")
+    @PreAuthorize("hasRole('ADMINN')")
+    public ResponseEntity<String> test() {
+        System.out.println("ADDDDDDMMMIIIINNNN");
+        return ResponseEntity.status(HttpStatus.OK).body("Adminnn");
+    }
+
+
+    @PostMapping("postCoach")
+    @PreAuthorize("hasRole('ADMINN')")
+    public ResponseEntity<?> createC(@RequestBody Coach coach) {
+
+        coachRepo.save(coach);
+        System.out.println("coach saved !!!!!!!!!!!!");
+        return ResponseEntity.status(HttpStatus.OK).body("Coach saved");
+    }
+
+
+
+    @PostMapping("create")
+    @PreAuthorize("hasRole('ADMINN')")
     public ResponseEntity<?> createUser(@RequestBody NewUserRecord newUserRecord) {
 
         userService.createUser(newUserRecord);

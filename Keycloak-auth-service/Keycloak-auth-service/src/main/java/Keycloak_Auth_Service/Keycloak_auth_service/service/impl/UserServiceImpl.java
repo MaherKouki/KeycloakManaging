@@ -102,7 +102,7 @@ public class UserServiceImpl implements UserService {
 
 
 
-    /*@Override
+    @Override
     public void createUser(NewUserRecord newUserRecord) {
 
         UserRepresentation userRepresentation = new UserRepresentation();
@@ -149,13 +149,13 @@ public class UserServiceImpl implements UserService {
         sendVerificationEmail(userRepresentation1.getId());
 
         //log.info("New User created successfully");
-    }*/
+    }
 
 
 
 
 
-    @Override
+    /*@Override
     public void createUser(NewUserRecord newUserRecord) {
 
         UserRepresentation userRepresentation = new UserRepresentation();
@@ -202,7 +202,7 @@ public class UserServiceImpl implements UserService {
         sendVerificationEmail(userRepresentation1.getId());
 
         //log.info("New User created successfully");
-    }
+    }*/
 
 
 
