@@ -102,7 +102,7 @@ public class UserServiceImpl implements UserService {
 
 
 
-    @Override
+    /*@Override
     public void createUser(NewUserRecord newUserRecord) {
 
         UserRepresentation userRepresentation = new UserRepresentation();
@@ -149,7 +149,52 @@ public class UserServiceImpl implements UserService {
         sendVerificationEmail(userRepresentation1.getId());
 
         //log.info("New User created successfully");
+    }*/
+
+
+
+
+    @Override
+    public void createUser(NewUserRecord newUserRecord) {
+        // Create user representation
+        UserRepresentation userRepresentation = new UserRepresentation();
+        userRepresentation.setEnabled(true);
+        userRepresentation.setFirstName(newUserRecord.getFirstname());
+        userRepresentation.setLastName(newUserRecord.getLastname());
+        userRepresentation.setUsername(newUserRecord.getUsername());
+        userRepresentation.setEmail(newUserRecord.getUsername()); // Ensure email is correct
+        userRepresentation.setEmailVerified(false);
+
+        // Set user credentials
+        CredentialRepresentation credentialRepresentation = new CredentialRepresentation();
+        credentialRepresentation.setValue(newUserRecord.getPassword());
+        credentialRepresentation.setType(CredentialRepresentation.PASSWORD);
+        userRepresentation.setCredentials(List.of(credentialRepresentation));
+
+        // Create user in Keycloak
+        UsersResource usersResource = getUsersResource();
+        Response response = usersResource.create(userRepresentation);
+        log.info("Status Code: {}", response.getStatus());
+
+        if (response.getStatus() != 201) {
+            throw new RuntimeException("Failed to create user. Status Code: " + response.getStatus());
+        }
+
+        // Retrieve user ID from Keycloak
+        List<UserRepresentation> users = usersResource.search(newUserRecord.getUsername());
+        if (!users.isEmpty()) {
+            String keycloakUserId = users.get(0).getId();
+            newUserRecord.setUserId(keycloakUserId); // Set Keycloak userId in entity
+        } else {
+            throw new RuntimeException("Failed to retrieve userId from Keycloak.");
+        }
+
+        log.info("New User created successfully with Keycloak ID: {}", newUserRecord.getUserId());
+
+        // Send verification email
+        sendVerificationEmail(users.get(0).getId());
     }
+
 
 
 

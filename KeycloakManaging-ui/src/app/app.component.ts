@@ -30,15 +30,15 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     const roles = this.keycloakService.roles;
 
-    if (roles.includes('admin')) {
+    if (roles.includes('ADMINN')) {
       this.router.navigate(['/admin']);
     } else if (roles.includes('COACH')) {
       this.router.navigate(['/coach']);
     } else if (roles.includes('ANALYST')) {
       this.router.navigate(['/analyst']);
-    } else if (roles.includes('player')) {
+    } else if (roles.includes('PLAYER')) {
       this.router.navigate(['/player']);
-    } else if (roles.includes('doctor')) {
+    } else if (roles.includes('DOCTOR')) {
       this.router.navigate(['/doctor']);
     } else {
       this.router.navigate(['/unauthorized']);
