@@ -171,6 +171,7 @@ public class UserServiceImpl implements UserService {
         credentialRepresentation.setType(CredentialRepresentation.PASSWORD);
         userRepresentation.setCredentials(List.of(credentialRepresentation));
 
+
         // Create user in Keycloak
         UsersResource usersResource = getUsersResource();
         Response response = usersResource.create(userRepresentation);
