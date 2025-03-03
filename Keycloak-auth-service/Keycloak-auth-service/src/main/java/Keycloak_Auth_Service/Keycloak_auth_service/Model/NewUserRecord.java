@@ -42,11 +42,8 @@ public class NewUserRecord {
     private LocalDateTime createdAt;
 
 
-
     @JsonIgnore
     private String Role;
-
-
 
 
 }
